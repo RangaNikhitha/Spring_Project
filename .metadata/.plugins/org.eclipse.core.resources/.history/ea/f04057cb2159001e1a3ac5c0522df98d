@@ -1,0 +1,38 @@
+package com.project.task.controller;
+
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Aspect
+@Component
+public class LoginAspect {
+	
+	private static final Logger Logger=LoggerFactory.getLogger(LoginAspect.class);
+	
+	/*@Before("execution(public * com.project.task.controller.TaskController.getAllQuestions())")
+	public void log() {
+		System.out.println("getAllQuestions method is called");
+	}
+
+}*/
+
+	@Before("execution(public * com.project.task.controller.TaskController.getAllQuestions())")
+	public void logBefore() {
+		Logger.info("getAllQuestions method called from aspect");
+	}
+	
+	/*
+	 * @After("execution(public * com.project.task.controller.TaskController.getAllQuestions())"
+	 * ) public void logAfter() { Logger.info("getAllQuestions method executed"); }
+	 */
+	@AfterReturning("execution(public * com.project.task.controller.TaskController.getAllQuestions())")
+	public void logAfter(){ 
+	    Logger.info("getAllQuestions method executed"); 
+	}
+
+}

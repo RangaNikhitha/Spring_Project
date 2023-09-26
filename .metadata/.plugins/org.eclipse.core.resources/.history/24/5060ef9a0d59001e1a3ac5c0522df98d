@@ -1,0 +1,16 @@
+package com.project.task.controller;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
+
+@Aspect
+@Component
+public class LoginAspect {
+	
+	@Before("execution(public * com.project.task.controller.TaskController.getAllQuestions())")
+	public void log() {
+		System.out.println("getAllQuestions method is called");
+	}
+
+}
